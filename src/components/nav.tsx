@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Menu, Moon, Sun, ChevronDown } from "lucide-react";
+import "../App.css";
 
 const navItems = [
   { title: "Home", href: "/" },
@@ -70,11 +71,11 @@ const Navbar = () => {
       }`}
     >
       {/* Desktop Nav */}
-      <div className="hidden md:flex justify-between items-center px-10 py-4">
+      <div className="hidden md:flex justify-between items-center px-10">
         <div className="flex items-center gap-6">
           <a
             href="/"
-            className="text-2xl font-bold bg-gradient-to-r from-[#ac7072] via-[#e6d2d1] to-[#ad7173] bg-clip-text text-transparent uppercase"
+            className="font-cinzel text-2xl font-bold bg-gradient-to-r from-[#ac7072] via-[#e6d2d1] to-[#ad7173] bg-clip-text text-transparent uppercase"
           >
             MatrimonySite
           </a>
@@ -88,7 +89,7 @@ const Navbar = () => {
                   onMouseEnter={() => setActiveDropdown(idx)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  <button className="flex items-center gap-1 py-2">
+                  <button className=" flex items-center gap-1 py-5">
                     {item.title}
                     <ChevronDown
                       size={16}
@@ -98,7 +99,7 @@ const Navbar = () => {
                     />
                   </button>
                   <div
-                    className={`absolute left-0 mt-1 min-w-[200px] shadow-lg z-50 transition-all duration-200 ${
+                    className={`absolute left-0 min-w-[200px] shadow-lg z-50 transition-all duration-200 ${
                       activeDropdown === idx
                         ? "opacity-100 translate-y-0 pointer-events-auto"
                         : "opacity-0 -translate-y-2 pointer-events-none"
@@ -112,7 +113,11 @@ const Navbar = () => {
                       <a
                         key={subIdx}
                         href={`/${sub.toLowerCase().replace(/\s+/g, "-")}`}
-                        className="block px-4 py-2 hover:bg-gray-200 dark:hover:bg-gray-700"
+                        className={`block px-4 py-2 ${
+                          darkMode
+                            ? "hover:bg-gray-700 text-white"
+                            : "hover:bg-gray-200 text-black"
+                        }`}
                       >
                         {sub}
                       </a>
@@ -121,7 +126,7 @@ const Navbar = () => {
                 </li>
               ) : (
                 <li key={idx}>
-                  <a href={item.href} className="py-2 block">
+                  <a href={item.href} className="py-5 block">
                     {item.title}
                   </a>
                 </li>
@@ -137,8 +142,8 @@ const Navbar = () => {
             href="/login"
             className={`px-4 py-1 border rounded text-sm ${
               darkMode
-                ? "border-white text-white hover:bg-white hover:text-black"
-                : "border-black text-black hover:bg-black hover:text-white"
+                ? "border-[var(--primary-color)] text-[var(--primary-color)] hover:bg-[var(--primary-color)] hover:text-white"
+                : "border-[var(--primary-color)] text-[var(--primary-color)] hover:bg-[var(--primary-color)] hover:text-white"
             }`}
           >
             Login
@@ -147,8 +152,8 @@ const Navbar = () => {
             href="/register"
             className={`px-4 py-1 rounded text-sm ${
               darkMode
-                ? "bg-white text-black hover:bg-gray-300"
-                : "bg-black text-white hover:bg-gray-800"
+                ? "bg-[var(--primary-color)] text-white hover:opacity-80"
+                : "bg-[var(--primary-color)] text-white hover:opacity-80"
             }`}
           >
             Register
@@ -203,7 +208,7 @@ const Navbar = () => {
                           <a
                             href={`/${sub.toLowerCase().replace(/\s+/g, "-")}`}
                             onClick={closeMobileMenu}
-                            className="block hover:underline"
+                            className="block"
                           >
                             {sub}
                           </a>
