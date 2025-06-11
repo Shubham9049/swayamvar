@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#google_translate_element span {
+  display: none;
+}
+
+.goog-te-gadget {
+  font-size: 0px !important;
+}
+
+#google_translate_element select {
+  background-color: transparent;
+  color: black;
+  border: 1px solid black;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  width: 140px;
+}
+
+.dark #google_translate_element select {
+  color: white;
+  border-color: white;
+}
+
+#google_translate_element select option {
+  background-color: white;
+  color: black;
+}
+
+.dark #google_translate_element select option {
+  background-color: #1f2937; /* gray-800 */
+  color: #f3f4f6; /* light gray */
+}
