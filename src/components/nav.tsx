@@ -77,7 +77,7 @@ const Navbar = () => {
             href="/"
             className="font-cinzel text-2xl font-bold bg-gradient-to-r from-[#ac7072] via-[#e6d2d1] to-[#ad7173] bg-clip-text text-transparent uppercase"
           >
-            MatrimonySite
+            Swayamvar
           </a>
           <div className="border-l self-stretch border-gray-400"></div>
           <ul className="flex gap-6 text-sm">
@@ -167,7 +167,7 @@ const Navbar = () => {
           href="/"
           className="text-xl font-bold bg-gradient-to-r from-[#ac7072] via-[#e6d2d1] to-[#ad7173] bg-clip-text text-transparent"
         >
-          MatrimonySite
+          Swayamvar
         </a>
         <div className="flex items-center gap-3">
           {/* <button onClick={() => setDarkMode(!darkMode)}>
