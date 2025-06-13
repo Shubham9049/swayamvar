@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Menu, Moon, Sun, ChevronDown } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import "../App.css";
 
 const navItems = [
@@ -31,7 +31,7 @@ const Navbar = () => {
   const [mobileDropdowns, setMobileDropdowns] = useState<
     Record<number, boolean>
   >({});
-  const [darkMode, setDarkMode] = useState(
+  const [darkMode, _setDarkMode] = useState(
     () => localStorage.getItem("theme") === "dark"
   );
 
@@ -135,9 +135,9 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex items-center gap-4">
-          <button onClick={() => setDarkMode(!darkMode)} title="Toggle Theme">
+          {/* <button onClick={() => setDarkMode(!darkMode)} title="Toggle Theme">
             {darkMode ? <Sun /> : <Moon />}
-          </button>
+          </button>*/}
           <a
             href="/login"
             className={`px-4 py-1 border rounded text-sm ${
@@ -170,9 +170,9 @@ const Navbar = () => {
           MatrimonySite
         </a>
         <div className="flex items-center gap-3">
-          <button onClick={() => setDarkMode(!darkMode)}>
+          {/* <button onClick={() => setDarkMode(!darkMode)}>
             {darkMode ? <Sun /> : <Moon />}
-          </button>
+          </button>*/}
           <button onClick={() => setMobileMenu(!mobileMenu)}>
             <Menu size={24} />
           </button>

@@ -7,13 +7,11 @@ import image2 from "../assets/banner.jpg";
 const images = [image1, image2];
 
 const options = [
-  { label: "I am looking for", value: "" },
   { label: "Bride", value: "woman" },
   { label: "Groom", value: "man" },
 ];
 
 const religionOptions = [
-  { label: "Religion", value: "" },
   { label: "Hindu", value: "hindu" },
   { label: "Muslim", value: "muslim" },
   { label: "Christian", value: "christian" },
@@ -75,14 +73,18 @@ export default function HeroSection() {
         </p>
 
         {/* Search Filter Box */}
-        <div className="bg-white dark:bg-[#1a1a1a] text-black dark:text-white w-full max-w-5xl mt-10 rounded-xl shadow-lg p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-          {/* Headless UI Dropdown */}
+        {/* Improved Search Filter Box */}
+        <div className="backdrop-blur-md bg-white/80 dark:bg-black/50 text-black dark:text-white w-full max-w-6xl mt-10 rounded-2xl shadow-2xl px-6 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          {/* Looking for */}
           <div>
+            <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">
+              Looking for
+            </label>
             <Listbox value={selectedOption} onChange={setSelectedOption}>
               <div className="relative">
-                <Listbox.Button className="w-full rounded border p-2 bg-white dark:bg-black dark:border-gray-600 flex justify-between items-center">
+                <Listbox.Button className="w-full rounded-lg border p-2 bg-white dark:bg-black dark:border-gray-600 flex justify-between items-center shadow-sm">
                   {selectedOption.label}
-                  <ChevronDown className="w-5 h-5 ml-2 text-gray-500" />
+                  <ChevronDown className="w-4 h-4 ml-2 text-gray-500" />
                 </Listbox.Button>
                 <Transition
                   as={Fragment}
@@ -90,13 +92,13 @@ export default function HeroSection() {
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <Listbox.Options className="absolute mt-1 w-full bg-white dark:bg-black border dark:border-gray-600 rounded shadow-lg z-50">
+                  <Listbox.Options className="absolute mt-1 w-full bg-white dark:bg-black border dark:border-gray-600 rounded-md shadow-lg z-50">
                     {options.map((option, idx) => (
                       <Listbox.Option
                         key={idx}
                         value={option}
                         className={({ active, selected }) =>
-                          `cursor-pointer select-none px-4 py-2 ${
+                          `cursor-pointer select-none px-4 py-2 rounded ${
                             active
                               ? "bg-[var(--primary-color)] text-white"
                               : "text-gray-900 dark:text-white"
@@ -117,19 +119,28 @@ export default function HeroSection() {
             </Listbox>
           </div>
 
-          {/* Keep other fields native for now */}
-          <input
-            type="number"
-            placeholder="Age"
-            className="border dark:border-gray-600 rounded p-2 w-full bg-white dark:bg-black"
-          />
-          {/* Religion Dropdown with Headless UI */}
+          {/* Age */}
           <div>
+            <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">
+              Age
+            </label>
+            <input
+              type="number"
+              placeholder="Age"
+              className="border dark:border-gray-600 rounded-lg p-2 w-full bg-white dark:bg-black shadow-sm"
+            />
+          </div>
+
+          {/* Religion */}
+          <div>
+            <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">
+              Religion
+            </label>
             <Listbox value={selectedReligion} onChange={setSelectedReligion}>
               <div className="relative">
-                <Listbox.Button className="w-full rounded border p-2 bg-white dark:bg-black dark:border-gray-600 flex justify-between items-center">
+                <Listbox.Button className="w-full rounded-lg border p-2 bg-white dark:bg-black dark:border-gray-600 flex justify-between items-center shadow-sm">
                   {selectedReligion.label}
-                  <ChevronDown className="w-5 h-5 ml-2 text-gray-500" />
+                  <ChevronDown className="w-4 h-4 ml-2 text-gray-500" />
                 </Listbox.Button>
                 <Transition
                   as={Fragment}
@@ -137,13 +148,13 @@ export default function HeroSection() {
                   leaveFrom="opacity-100"
                   leaveTo="opacity-0"
                 >
-                  <Listbox.Options className="absolute mt-1 w-full bg-white dark:bg-black border dark:border-gray-600 rounded shadow-lg z-50">
+                  <Listbox.Options className="absolute mt-1 w-full bg-white dark:bg-black border dark:border-gray-600 rounded-md shadow-lg z-50">
                     {religionOptions.map((option, idx) => (
                       <Listbox.Option
                         key={idx}
                         value={option}
                         className={({ active, selected }) =>
-                          `cursor-pointer select-none px-4 py-2 ${
+                          `cursor-pointer select-none px-4 py-2 rounded ${
                             active
                               ? "bg-[var(--primary-color)] text-white"
                               : "text-gray-900 dark:text-white"
@@ -164,14 +175,24 @@ export default function HeroSection() {
             </Listbox>
           </div>
 
-          <input
-            type="text"
-            placeholder="Location"
-            className="border dark:border-gray-600 rounded p-2 w-full bg-white dark:bg-black"
-          />
-          <button className="bg-[var(--primary-color)] hover:bg-pink-700 text-white rounded p-2 font-semibold transition-all duration-200">
-            Search
-          </button>
+          {/* Location */}
+          <div>
+            <label className="block text-sm font-medium mb-1 text-gray-700 dark:text-gray-300">
+              Location
+            </label>
+            <input
+              type="text"
+              placeholder="Location"
+              className="border dark:border-gray-600 rounded-lg p-2 w-full bg-white dark:bg-black shadow-sm"
+            />
+          </div>
+
+          {/* Search Button */}
+          <div className="flex items-end">
+            <button className="w-full bg-[var(--primary-color)] hover:bg-pink-700 text-white rounded-lg p-3 font-semibold transition-all duration-200 shadow-md">
+              Search
+            </button>
+          </div>
         </div>
       </div>
     </section>
