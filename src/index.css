@@ -33,3 +33,23 @@
   background-color: #1f2937; /* gray-800 */
   color: #f3f4f6; /* light gray */
 }
+
+.fixed-leaf-left {
+  position: fixed;
+  left: -10%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  pointer-events: none;
+  max-height: 400px;
+}
+
+.fixed-leaf-right {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  pointer-events: none;
+  max-height: 400px;
+}

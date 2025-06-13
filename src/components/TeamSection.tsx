@@ -37,12 +37,12 @@ const members: TeamMember[] = [
 
 const TeamSection: React.FC = () => {
   return (
-    <div className="max-w-7xl mx-auto">
-      <section className="bg-[#fffaf0] py-16 px-4 text-center">
-        <h3 className="text-lg sm:text-xl text-[#a67c52] tracking-widest font-serif uppercase">
+    <div className="text-[#a67c52] bg-[#fffaf0]">
+      <section className="max-w-7xl mx-auto py-16 px-4 text-center">
+        <h3 className="text-lg sm:text-xl  tracking-widest font-serif uppercase">
           Our Professionals
         </h3>
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 my-2 font-serif">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800 my-2 font-cinzel">
           Meet Our Team
         </h2>
         <div className="w-24 h-1 mx-auto bg-green-300 my-4 rounded-full"></div>

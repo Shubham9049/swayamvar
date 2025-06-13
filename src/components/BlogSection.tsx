@@ -1,4 +1,6 @@
 import React from "react";
+import image1 from "../assets/1 (2).png";
+import image2 from "../assets/1.png";
 
 interface BlogPost {
   image: string;
@@ -33,9 +35,9 @@ const blogPosts: BlogPost[] = [
 
 const BlogSection: React.FC = () => {
   return (
-    <div className="max-w-7xl mx-auto">
-      <section className="bg-[#fffaf7] text-black py-16">
-        <div className="max-w-7xl mx-auto px-4">
+    <div className="bg-[#fffaf7]">
+      <section className="max-w-7xl mx-auto text-black py-16">
+        <div className=" px-4">
           {/* Heading */}
           <div className="text-center mb-12">
             <p className="text-sm text-[#b68c62] tracking-wide uppercase">
@@ -54,25 +56,24 @@ const BlogSection: React.FC = () => {
               <div className="flex justify-center items-center gap-1 mt-4">
                 {/* Left Image (flipped horizontally) */}
                 <img
-                  src="https://rn53themes.net/themes/matrimo/images/leaf/1.png"
+                  src={image1}
                   alt="decor"
                   className="w-24 transform scale-x-[-1] animate-float"
                 />
 
                 {/* Right Image (normal) */}
-                <img
-                  src="https://rn53themes.net/themes/matrimo/images/leaf/1.png"
-                  alt="decor"
-                  className="w-24 animate-float"
-                />
+                <img src={image2} alt="decor" className="w-24 animate-float" />
               </div>
             </div>
           </div>
 
           {/* Blog Cards */}
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-8 ">
             {blogPosts.map((post, idx) => (
-              <div key={idx} className=" bg-white text-center md:text-left">
+              <div
+                key={idx}
+                className=" bg-white text-center md:text-left p-10"
+              >
                 <img
                   src={post.image}
                   alt={post.title}
