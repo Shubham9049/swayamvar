@@ -1,4 +1,9 @@
 import image from "../assets/whychooseus.png";
+import prize from "../assets/prize.png";
+import trust from "../assets/trust.png";
+import rings from "../assets/rings.png";
+import image1 from "../assets/1 (2).png";
+import image2 from "../assets/1.png";
 
 export default function WhyChooseUs() {
   return (
@@ -13,33 +18,44 @@ export default function WhyChooseUs() {
       </div>
 
       {/* Text Content */}
-      <div className="text-center max-w-4xl mx-auto px-4">
+      <div className="text-center w-5/6 mt-10 mx-auto px-4">
         <h3 className="text-yellow-400 text-xl font-semibold mb-2">
-          #1 <span className="text-orange-400">WEDDING WEBSITE</span>
+          #1{" "}
+          <span className="text-orange-400 text-lg sm:text-xl  tracking-widest font-serif uppercase">
+            WEDDING WEBSITE
+          </span>
         </h3>
-        <h2 className="text-4xl sm:text-5xl font-bold text-[var(--primary-color)] mb-4">
+        <h2 className=" text-4xl sm:text-5xl font-bold text-[var(--primary-color)] mb-4 uppercase font-cinzel">
           Why choose us
         </h2>
-        <p className="text-gray-200 mb-10">
-          Most Trusted and premium Matrimony Service in the World.
-        </p>
+      </div>
+
+      {/* Decorations */}
+      <div className="flex justify-center items-center gap-1 my-4 ">
+        <img
+          src={image1}
+          alt="decor"
+          className="w-24 animate-float"
+          style={{ transform: "scaleX(-1)" }}
+        />
+        <img src={image2} alt="decor" className="w-24 animate-float" />
       </div>
 
       {/* Cards */}
       <div className="flex flex-col md:flex-row gap-6 justify-center px-4 max-w-6xl mx-auto">
         {[
           {
-            icon: "https://cdn-icons-png.flaticon.com/512/1828/1828640.png",
+            icon: prize,
             title: "Genuine profiles",
             desc: "Contact genuine profiles with 100% verified mobile",
           },
           {
-            icon: "https://cdn-icons-png.flaticon.com/512/1828/1828884.png",
+            icon: trust,
             title: "Most trusted",
             desc: "The most trusted wedding matrimony brand lorem",
           },
           {
-            icon: "https://cdn-icons-png.flaticon.com/512/1828/1828970.png",
+            icon: rings,
             title: "2000+ weddings",
             desc: "Lakhs of peoples have found their life partner",
           },
@@ -53,7 +69,9 @@ export default function WhyChooseUs() {
               alt={item.title}
               className="w-12 h-12 mx-auto mb-4"
             />
-            <h4 className="text-lg font-semibold mb-2">{item.title}</h4>
+            <h4 className="font-cinzel text-xl text-[var(--secondary-color)] font-semibold mb-2">
+              {item.title}
+            </h4>
             <p className="text-sm text-gray-600">{item.desc}</p>
           </div>
         ))}

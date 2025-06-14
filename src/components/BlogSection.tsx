@@ -35,57 +35,53 @@ const blogPosts: BlogPost[] = [
 
 const BlogSection: React.FC = () => {
   return (
-    <div className="bg-[#fffaf7]">
-      <section className="max-w-7xl mx-auto text-black py-16">
+    <div className="bg-[var(--bg-secondary-color)]">
+      <section className="w-5/6 mx-auto text-black py-16">
         <div className=" px-4">
           {/* Heading */}
           <div className="text-center mb-12">
-            <p className="text-sm text-[#b68c62] tracking-wide uppercase">
-              Blog Posts
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold font-serif">
-              Blog <span className="text-[#b68c62]">&</span> Articles
+            <h2 className="text-4xl sm:text-5xl font-bold text-[var(--primary-color)] mb-4  font-cinzel">
+              Blog & Articles
             </h2>
             {/* Center Content */}
             <div className="text-center z-10">
-              <h1 className="text-3xl font-bold text-brown-700">
-                Recent Couples
-              </h1>
-
               {/* Mirrored images below */}
-              <div className="flex justify-center items-center gap-1 mt-4">
-                {/* Left Image (flipped horizontally) */}
+              {/* Decorations */}
+              <div className="flex justify-center items-center gap-1 my-4 ">
                 <img
                   src={image1}
                   alt="decor"
-                  className="w-24 transform scale-x-[-1] animate-float"
+                  className="w-24 animate-float"
+                  style={{ transform: "scaleX(-1)" }}
                 />
-
-                {/* Right Image (normal) */}
                 <img src={image2} alt="decor" className="w-24 animate-float" />
               </div>
             </div>
           </div>
 
           {/* Blog Cards */}
-          <div className="grid md:grid-cols-3 gap-8 ">
+          <div className="grid md:grid-cols-3 gap-10">
             {blogPosts.map((post, idx) => (
               <div
                 key={idx}
-                className=" bg-white text-center md:text-left p-10"
+                className="bg-white rounded-lg shadow hover:shadow-md transition p-4"
               >
                 <img
                   src={post.image}
                   alt={post.title}
-                  className="w-full h-[350px] object-cover"
+                  className="w-full h-52 object-cover rounded-md"
                 />
-                <div className="mt-4">
-                  <p className="text-[11px] text-pink-600 font-semibold uppercase tracking-widest">
+                <div className="mt-5">
+                  <p className="text-xs text-[var(--primary-color)]  font-semibold uppercase tracking-wide">
                     {post.category}
                   </p>
-                  <h3 className="text-lg font-bold mt-1">{post.title}</h3>
-                  <p className="text-sm mt-1">{post.description}</p>
-                  <button className="mt-4 bg-black text-white px-4 py-1 text-[11px] font-semibold uppercase tracking-wide">
+                  <h3 className="text-lg text-[var(--secondary-color)] font-bold mt-2 text-gray-800">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-gray-600 mt-2">
+                    {post.description}
+                  </p>
+                  <button className="mt-4 bg-[var(--primary-color)] text-white px-5 py-2 text-xs font-semibold uppercase tracking-wider rounded hover:bg-gray-800 transition">
                     Read More
                   </button>
                 </div>

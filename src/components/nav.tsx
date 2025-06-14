@@ -32,7 +32,7 @@ const Navbar = () => {
     Record<number, boolean>
   >({});
   const [darkMode, _setDarkMode] = useState(
-    () => localStorage.getItem("theme") === "dark"
+    () => localStorage.getItem("theme") === "light"
   );
 
   useEffect(() => {
