@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Menu, ChevronDown } from "lucide-react";
 import "../App.css";
+import logo from "../assets/logo.png";
 
 const navItems = [
   { title: "Home", href: "/" },
@@ -31,14 +32,6 @@ const Navbar = () => {
   const [mobileDropdowns, setMobileDropdowns] = useState<
     Record<number, boolean>
   >({});
-  const [darkMode, _setDarkMode] = useState(
-    () => localStorage.getItem("theme") === "light"
-  );
-
-  useEffect(() => {
-    document.documentElement.classList.toggle("dark", darkMode);
-    localStorage.setItem("theme", darkMode ? "dark" : "light");
-  }, [darkMode]);
 
   useEffect(() => {
     const googleTranslateElementInit = () => {
@@ -65,19 +58,12 @@ const Navbar = () => {
   const closeMobileMenu = () => setMobileMenu(false);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 z-50 w-full shadow-sm font-raleway font-light ${
-        darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
-      }`}
-    >
+    <nav className="fixed top-0 left-0 z-50 w-full shadow-sm font-raleway font-light bg-white text-black">
       {/* Desktop Nav */}
       <div className="hidden md:flex justify-between items-center px-10">
         <div className="flex items-center gap-6">
-          <a
-            href="/"
-            className="font-cinzel text-2xl font-bold bg-gradient-to-r from-[#ac7072] via-[#e6d2d1] to-[#ad7173] bg-clip-text text-transparent uppercase"
-          >
-            Swayamvar
+          <a href="/">
+            <img src={logo} alt="" className="w-24" />
           </a>
           <div className="border-l self-stretch border-gray-400"></div>
           <ul className="flex gap-6 text-sm">
@@ -89,7 +75,7 @@ const Navbar = () => {
                   onMouseEnter={() => setActiveDropdown(idx)}
                   onMouseLeave={() => setActiveDropdown(null)}
                 >
-                  <button className=" flex items-center gap-1 py-5">
+                  <button className="flex items-center gap-1 text-lg py-5">
                     {item.title}
                     <ChevronDown
                       size={16}
@@ -103,21 +89,13 @@ const Navbar = () => {
                       activeDropdown === idx
                         ? "opacity-100 translate-y-0 pointer-events-auto"
                         : "opacity-0 -translate-y-2 pointer-events-none"
-                    } ${
-                      darkMode
-                        ? "bg-gray-800 text-white"
-                        : "bg-white text-black"
-                    }`}
+                    } bg-white text-black`}
                   >
                     {item.dropdown.map((sub, subIdx) => (
                       <a
                         key={subIdx}
                         href={`/${sub.toLowerCase().replace(/\s+/g, "-")}`}
-                        className={`block px-4 py-2 ${
-                          darkMode
-                            ? "hover:bg-gray-700 text-white"
-                            : "hover:bg-gray-200 text-black"
-                        }`}
+                        className="block px-4 py-2 hover:bg-gray-200"
                       >
                         {sub}
                       </a>
@@ -126,7 +104,7 @@ const Navbar = () => {
                 </li>
               ) : (
                 <li key={idx}>
-                  <a href={item.href} className="py-5 block">
+                  <a href={item.href} className="py-5 block text-lg">
                     {item.title}
                   </a>
                 </li>
@@ -135,26 +113,15 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="flex items-center gap-4">
-          {/* <button onClick={() => setDarkMode(!darkMode)} title="Toggle Theme">
-            {darkMode ? <Sun /> : <Moon />}
-          </button>*/}
           <a
             href="/login"
-            className={`px-4 py-1 border rounded text-sm ${
-              darkMode
-                ? "border-[var(--primary-color)] text-[var(--primary-color)] hover:bg-[var(--primary-color)] hover:text-white"
-                : "border-[var(--primary-color)] text-[var(--primary-color)] hover:bg-[var(--primary-color)] hover:text-white"
-            }`}
+            className="px-5 py-2 border border-[var(--primary-color)] text-[var(--primary-color)] hover:bg-[var(--primary-color)] hover:text-white text-sm rounded"
           >
             Login
           </a>
           <a
             href="/register"
-            className={`px-4 py-1 rounded text-sm ${
-              darkMode
-                ? "bg-[var(--primary-color)] text-white hover:opacity-80"
-                : "bg-[var(--primary-color)] text-white hover:opacity-80"
-            }`}
+            className="px-5 py-2 bg-[var(--primary-color)] text-white hover:opacity-80 text-sm rounded"
           >
             Register
           </a>
@@ -169,22 +136,13 @@ const Navbar = () => {
         >
           Swayamvar
         </a>
-        <div className="flex items-center gap-3">
-          {/* <button onClick={() => setDarkMode(!darkMode)}>
-            {darkMode ? <Sun /> : <Moon />}
-          </button>*/}
-          <button onClick={() => setMobileMenu(!mobileMenu)}>
-            <Menu size={24} />
-          </button>
-        </div>
+        <button onClick={() => setMobileMenu(!mobileMenu)}>
+          <Menu size={24} />
+        </button>
       </div>
 
       {mobileMenu && (
-        <div
-          className={`md:hidden fixed top-12 left-0 w-full h-[calc(100vh-3.5rem)] overflow-y-auto px-4 pt-4 z-40 ${
-            darkMode ? "bg-gray-900 text-white" : "bg-white text-black"
-          }`}
-        >
+        <div className="md:hidden fixed top-12 left-0 w-full h-[calc(100vh-3.5rem)] overflow-y-auto px-4 pt-4 z-40 bg-white text-black">
           <div className="space-y-4 pb-6">
             {navItems.map((item, idx) =>
               item.dropdown ? (
@@ -228,13 +186,13 @@ const Navbar = () => {
                 </a>
               )
             )}
-            <div className="pt-4 flex gap-2  w-full">
+            <div className="pt-4 flex gap-2 w-full">
               {authLinks.map((link) => (
                 <a
                   key={link.title}
                   href={link.href}
                   onClick={closeMobileMenu}
-                  className="text-sm hover:underline border border-gray-400 w-1/2 p-2 text-center"
+                  className="text-sm border border-gray-400 w-1/2 p-2 text-center hover:bg-gray-100"
                 >
                   {link.title}
                 </a>

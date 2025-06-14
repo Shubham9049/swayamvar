@@ -1,5 +1,5 @@
-import TimelineItem from "./TimelineItem";
 import { useEffect, useRef, useState } from "react";
+import TimelineItem from "./TimelineItem";
 import register from "../assets/rings.png";
 import match from "../assets/wedding-2.png";
 import interest from "../assets/love-birds.png";
@@ -20,7 +20,7 @@ const timelineData = [
 
 export default function HowItWorks() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [fillHeight, setFillHeight] = useState(0); // visible pink line height in %
+  const [fillHeight, setFillHeight] = useState(0); // percent of the pink fill
 
   const handleScroll = () => {
     if (!containerRef.current) return;
@@ -28,7 +28,6 @@ export default function HowItWorks() {
     const rect = containerRef.current.getBoundingClientRect();
     const windowHeight = window.innerHeight;
 
-    // If not visible, don't fill
     if (rect.bottom < 0 || rect.top > windowHeight) {
       setFillHeight(0);
       return;
@@ -36,7 +35,6 @@ export default function HowItWorks() {
 
     const totalHeight = rect.height;
     const visibleBottom = Math.min(windowHeight, rect.bottom);
-
     const scrollProgress = (visibleBottom - rect.top) / totalHeight;
 
     setFillHeight(Math.min(1, scrollProgress) * 100);
@@ -53,6 +51,7 @@ export default function HowItWorks() {
       ref={containerRef}
       className="relative bg-[#fffaf0] py-20 px-4 md:px-20 overflow-hidden"
     >
+      {/* Header */}
       <div className="text-center">
         <h3 className="text-sm uppercase tracking-widest text-[#a67c52] font-serif">
           Moments
@@ -63,7 +62,7 @@ export default function HowItWorks() {
       </div>
 
       {/* Decorations */}
-      <div className="flex justify-center items-center gap-1 my-4 ">
+      <div className="flex justify-center items-center gap-1 my-4">
         <img
           src={image1}
           alt="decor"
@@ -73,42 +72,43 @@ export default function HowItWorks() {
         <img src={image2} alt="decor" className="w-24 animate-float" />
       </div>
 
-      {/* Center Line */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-black z-0">
-        <div
-          className="absolute top-0 left-0 w-full bg-pink-500 transition-all duration-300"
-          style={{ height: `calc(${fillHeight}% - 300px)` }}
-        />
-      </div>
+      {/* Timeline Container */}
+      <div className="relative z-10 flex flex-col items-center mt-10 space-y-12">
+        {/* Vertical black line */}
+        <div className="absolute left-1/2 -translate-x-1/2 top-0 w-1 h-full bg-black z-0">
+          <div
+            className="absolute top-0 left-0 w-full bg-pink-500 transition-all duration-300"
+            style={{ height: `calc(${fillHeight}% - 100px)` }}
+          />
+        </div>
 
-      {/* Dot points */}
-      <div className="absolute left-1/2 transform -translate-x-1/2 z-10 w-4">
-        {timelineData.map((_, index) => (
+        {/* Dots & Timeline Items */}
+        {timelineData.map((item, index) => (
           <div
             key={index}
-            className="absolute w-4 h-4 rounded-full bg-black border-4 border-white transition-colors duration-300"
-            style={{
-              top: `${(index + 1) * 160}px`,
-              backgroundColor:
-                fillHeight / 100 >= (index + 1) / timelineData.length
-                  ? "#ec4899"
-                  : "#000",
-            }}
-          />
-        ))}
-      </div>
-
-      {/* Timeline Items */}
-      <div className="relative z-20 flex flex-col space-y-0">
-        {timelineData.map((item, index) => (
-          <TimelineItem
-            key={index}
-            title={item.title}
-            timing={item.timing}
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-            image={item.image}
-            left={index % 2 === 0}
-          />
+            className="relative w-full flex flex-col items-center z-20"
+          >
+            {/* Dot */}
+            <div
+              className="w-4 h-4 rounded-full border-4 border-white mb-4"
+              style={{
+                backgroundColor:
+                  fillHeight / 100 >= (index + 1) / timelineData.length
+                    ? "#ec4899"
+                    : "#000",
+              }}
+            />
+            {/* Timeline Item */}
+            <div className="w-full">
+              <TimelineItem
+                title={item.title}
+                timing={item.timing}
+                description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                image={item.image}
+                left={index % 2 === 0}
+              />
+            </div>
+          </div>
         ))}
       </div>
     </section>

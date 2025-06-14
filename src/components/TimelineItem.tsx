@@ -46,13 +46,13 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
             transition={{ duration: 0.6 }}
             className="w-1/2 text-right pr-10"
           >
-            <h3 className="font-bold text-2xl font-cinzel text-[var(--secondary-color)]">
+            <h3 className="font-bold text-xl md:text-2xl font-cinzel text-[var(--secondary-color)]">
               {title}
             </h3>
             <p className="text-pink-600 text-xs mt-1 font-semibold">
               TIMING: {timing}
             </p>
-            <p className="text-sm mt-2 w-60  text-gray-700 text-right ml-auto">
+            <p className="text-sm mt-2 w-40 md:w-60  text-gray-700 text-right ml-auto">
               {description}
             </p>
           </motion.div>
@@ -60,7 +60,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
             <motion.img
               src={image}
               alt={title}
-              className="w-16 h-16"
+              className="w-24 h-24"
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6 }}
@@ -73,7 +73,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
             <motion.img
               src={image}
               alt={title}
-              className="w-16 h-16"
+              className="w-28 h-28 md:w-36 md:h-36 "
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.6 }}
@@ -85,13 +85,15 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
             transition={{ duration: 0.6 }}
             className="w-1/2 text-left pl-10"
           >
-            <h3 className="font-bold text-2xl font-cinzel text-[var(--secondary-color)]">
+            <h3 className="font-bold text-xl md:text-2xl font-cinzel text-[var(--secondary-color)]">
               {title}
             </h3>
             <p className="text-pink-600 text-xs mt-1 font-semibold">
               TIMING: {timing}
             </p>
-            <p className="text-sm mt-2 w-60 text-gray-700">{description}</p>
+            <p className="text-sm mt-2 w-40 md:w-60 text-gray-700">
+              {description}
+            </p>
           </motion.div>
         </>
       )}
